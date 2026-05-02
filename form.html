@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="img-ascii" enctype="multipart/form-data">
+        <input type="file" name="user_image" id="user_image">
+        <input type="submit" value="submit dis">
+    </form>
+    <pre style="background-color: black; color: white; font-size: 5px; font-family: monospace;" id="output-box">output here...</pre>
+
+    <script>
+        document.getElementById('img-ascii').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Stop the page from reloading
+            
+            const formData = new FormData(e.target);
+            
+            const response = await fetch('/process', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.text();
+            document.getElementById('output-box').innerText = result;
+        });
+    </script>
+</body>
+</html>
