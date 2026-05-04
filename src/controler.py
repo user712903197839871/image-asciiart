@@ -28,14 +28,14 @@ def process_data():
 
     # data validation
     if file.filename == '':
-        return "no file given!"
+        return "[FAIL] import a file first goddamit!"
     
     if int(char_limit) < 0:
-        return "boi u cannot go negative!"
+        return "[FAIL] boi u cannot go negative!"
     elif int(char_limit) < 20:
-        return "boi, u cannot go lowwer!"
-    elif int(char_limit) > 2499:
-        return "boi, u cannot go higher"
+        return "[FAIL] boi, u cannot go lowwer!"
+    elif int(char_limit) > 2500:
+        return "[FAIL] boi, u cannot go higher"
 
     
     # 2. Save the file temporarily so converter can read it
@@ -47,11 +47,13 @@ def process_data():
     # first is the characterset, then the limit
     result = subprocess.run(["python", "converter.py", charset, char_limit], capture_output=True, text=True)
     
-    # print(result)
+    print(result.stdout)
+
+    output_content = result.stdout + "//split"
 
     # 4. Read output file
     with open('out.txt', 'r') as f:
-        output_content = f.read()
+        output_content += f.read()
         
     
     os.remove(file_path)

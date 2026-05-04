@@ -59,9 +59,6 @@ def printImgToAscii(filepath: str, values) -> tuple[str, int]:
     return (resulting_str, end_time-start_time)
 
 
-
-
-
 if __name__ == "__main__":
 
     # do some data validation
@@ -98,6 +95,6 @@ if __name__ == "__main__":
 
             out.write(art)
 
-            print(f"[SUCCESS] Executed in {execution_time}s")
+            print(f"[SUCCESS] Painted in {execution_time}s")
     if empty:
         print("[WARNING] no files provided")
