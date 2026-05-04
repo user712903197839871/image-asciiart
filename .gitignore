@@ -1,1 +1,4 @@
-src\out.txt
+src/out.txt
+.vscode
+__pycache__
+src/__pycache__

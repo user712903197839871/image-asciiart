@@ -1,3 +1,341 @@
+:root {
+    /* credits to claude for design system */
+    --bg-base: #0C0D0F;                /* Page background */
+    --bg-surface: #131417;             /* Card / panel bg */
+    --bg-raised: #1A1C20;              /* Input focus bg */
+    --bg-hover: #2A2D33;               /* Button hover bg */
+    --bg-overlay: #222429;
+
+    --border-default: #2E3138;         /* Default border */
+    --border-focus: #F5A623;           /* Focus ring color */
+
+    --accent: #F5A623;                 /* Primary CTA */
+    --accent-hover: #F7B84A;           /* CTA hover */
+    --accent-muted:   #2A2010;
+    --accent-border:  #5A3D0A;
+
+    --error: #E05252;                  /* errors */
+    --success: #4CAF82;                /* success */
+
+    --text-primary: #F0EDE8;           /* Primary text */
+    --text-secondary: #8C8F96;         /* Labels, captions */
+    --text-muted: #56595F;             /* Placeholders */
+
+    --radius-sm: 4px;                    /* Badge, inline tag */
+    --radius-md: 6px;                    /* Input, button */
+    --radius-lg: 10px;                   /* Card, panel */
+    --radius-xlg: 20px;                   /* output */
+
+    --font-display: 'Syne', sans-serif;  /* All UI text */
+    --font-mono: 'IBM Plex Mono';        /* Code, metadata */
+
+    --std-font-size: 0.9rem;
+    --btns-font-size: 0.9rem;
+
+    --transition-basic: 0.2s ease;
+
+    --shadow-std: 0 0 15px -5px var(--accent-hover);
+    --shadow-secondary: 0 0 3px 1px var(--accent);
+
+}
+
+/* resets */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+
+    font-family: var(--font-display);
+
+    background-color: var(--bg-base);
+
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+p, label, span {
+    font-size: var(--std-font-size);
+    font-weight: 400;
+}
+
+span.metadata {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-text {
+    text-align: center;
+}
+.center-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.field-container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+.fill-div {
+    width: 100%;
+}
+.std-space-05 {
+    gap: 0.5rem;
+}
+.std-space {
+    gap: 1rem;
+}
+.std-space-2 {
+    gap: 2rem;
+}
+
+/* taking path of components, dis shi too small for bootstrap things */
+.art-form {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--bg-surface);
+
+    padding: 2rem;
+
+    border: 1px solid var(--border-default);
+
+    border-radius: var(--radius-lg);
+
+    width: 30rem;
+
+    gap: 1rem;
+}
+fieldset {
+    border: none;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-input {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    align-items: center;
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+
+    background-color: var(--bg-surface);
+
+    padding: 0.6rem 1rem;
+
+    cursor: pointer;
+    transition: var(--transition-basic);
+}
+.custom-file-input > span#select-file-button {
+    background-color: var(--bg-raised);
+
+    border: 1px solid var(--bg-raised);
+
+    border-radius: var(--radius-md);
+
+    padding: 0.3rem 0.7rem;
+
+    transition: var(--transition-basic);
+}
+.custom-file-input:hover > span#select-file-button {
+    color: var(--accent);
+}
+.custom-file-input:active > span#select-file-button {
+    background-color: var(--bg-overlay);
+    border: 1px solid var(--border-default);
+} 
+/* .custom-file-input > span.selected-file-text { } */
+
+input[type="text"], input[type="number"] {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+
+    color: var(--text-primary);
+
+    background-color: var(--bg-surface);
+
+    padding: 0.6rem 1rem;
+
+    cursor: text;
+    transition: var(--transition-basic);
+}
+input[type="text"]::placeholder, input[type="number"]::placeholder {
+    color: var(--text-muted);
+}
+input[type="text"]:focus-visible, input[type="number"]:focus-visible {
+    outline: none;
+}
+
+.custom-file-input:hover, 
+input[type="text"]:hover, 
+input[type="number"]:hover,
+.btn-std:hover, 
+select:hover {
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-std);
+}
+.custom-file-input:active, 
+input[type="text"]:focus-visible, 
+input[type="number"]:focus-visible,
+.btn-std:active, 
+select:active {
+    background-color: var(--bg-hover);
+}
+
+input[type="submit"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--accent);
+    color: var(--bg-base);
+
+    width: fit-content;
+    height: fit-content;
+
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-md);
+
+    font-weight: bold;
+    font-size: var(--btns-font-size);
+
+    padding: 0.7rem 1.2rem;
+
+    transition: var(--transition-basic);
+}
+input[type="submit"]:hover {
+    border-color: var(--accent-hover);
+    background-color: var(--accent-hover);
+
+    box-shadow: var(--shadow-secondary);
+
+    cursor: pointer;
+}
+
+/* hover is above */
+.btn-std, select {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+
+    padding: 0.7rem 1.2rem;
+
+    font-size: var(--btns-font-size);
+
+    cursor: pointer;
+    transition: var(--transition-basic);
+}
+.btn-std {
+    width: fit-content;
+    height: fit-content;
+}
+
+.btn-number {
+    font-family: var(--font-mono);
+
+    color: var(--text-secondary);
+
+    border-radius: var(--radius-sm);
+
+    border: 1px solid var(--border-default);
+    background-color: var(--bg-surface);
+
+    padding: 0.1rem 0.2rem;
+
+    transition: var(--transition-basic);
+}
+.btn-number:hover {
+    color: var(--accent);
+    border-color: var(--accent-border);
+    background-color: var(--accent-muted);
+
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.success {
+    color: var(--success);
+    font-family: var(--font-mono);
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 2rem 3rem 10rem;
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xlg);
+    background-color: black;
+    padding: 1rem 2rem;
+    min-height: 20rem;
+}
+
+.headding-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding-top: 1rem;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 
 #output-box {
     background-color: black; 

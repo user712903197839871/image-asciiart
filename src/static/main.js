@@ -3,16 +3,18 @@
 
 // could be read from a .env btw
 const CHOOSE_SLIDER_MODE_PROMPT = "you feel loose today? wanna slide?";
-const CHOOSE_SLIDER_MODE_BUTTON_TEXT = "yes i am loose";
+const CHOOSE_SLIDER_MODE_BUTTON_TEXT = "i do feel loose";
 
-const CHOOSE_BUTTONS_MODE_PROMPT = "is too painfull? go back to a easier mode?";
-const CHOOSE_BUTTONS_MODE_BUTTON_TEXT = "yes please";
+const CHOOSE_BUTTONS_MODE_PROMPT = "is it too painfull? go back to a easier mode?";
+const CHOOSE_BUTTONS_MODE_BUTTON_TEXT = "hmm sure";
 
 const changeCharChooseModeButton = document.getElementById('toggle-char-choose-mode');
 const changeCharChooseModeLabel = document.getElementById('toggle-char-choose-mode-label');
 
 const CHOOSE_MODE_SLIDER_CONTAINER = document.getElementById('choose-mode-slider');
 const CHOOSE_MODE_BUTTONS_CONTAINER = document.getElementById('choose-mode-buttons');
+
+const ART_STATUS_SPAN = document.getElementById("art-status");
 
 // buttons|slider
 let currentChoosingMode = "buttons";
@@ -68,8 +70,10 @@ function init() {
     changeCharChooseModeButton.textContent = CHOOSE_SLIDER_MODE_BUTTON_TEXT;
 
     
-    CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "block";
+    CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "flex";
     CHOOSE_MODE_SLIDER_CONTAINER.style.display = "none";
+
+    ART_STATUS_SPAN.style.display = "none";
 
 }
 
@@ -105,7 +109,8 @@ function processResult(responseString) {
             }
         }
 
-        document.getElementById("art-status").textContent = responseString.length + " characters " + operationTime + "s";
+        ART_STATUS_SPAN.style.display = "block";
+        ART_STATUS_SPAN.textContent = responseString.length + " characters " + operationTime + "s";
 
         return true
 
@@ -164,7 +169,7 @@ function calcFontSetResult(charLimit, result) {
 function toggleChoosingMode() {
     if (currentChoosingMode === "buttons") {
         currentChoosingMode = "slider";
-        CHOOSE_MODE_SLIDER_CONTAINER.style.display = "block";
+        CHOOSE_MODE_SLIDER_CONTAINER.style.display = "flex";
         CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "none";
         
         changeCharChooseModeLabel.textContent = CHOOSE_BUTTONS_MODE_PROMPT;
@@ -172,7 +177,7 @@ function toggleChoosingMode() {
     } else {
         currentChoosingMode = "buttons";
 
-        CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "block";
+        CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "flex";
         CHOOSE_MODE_SLIDER_CONTAINER.style.display = "none";
 
         changeCharChooseModeLabel.textContent = CHOOSE_SLIDER_MODE_PROMPT;

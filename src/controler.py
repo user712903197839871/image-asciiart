@@ -29,8 +29,10 @@ def process_data():
     # data validation
     if file.filename == '':
         return "[FAIL] import a file first goddamit!"
-    
-    if int(char_limit) < 0:
+
+    if char_limit == '':
+        return "[FAIL] input a charlimit goddamit"    
+    elif int(char_limit) < 0:
         return "[FAIL] boi u cannot go negative!"
     elif int(char_limit) < 20:
         return "[FAIL] boi, u cannot go lowwer!"
