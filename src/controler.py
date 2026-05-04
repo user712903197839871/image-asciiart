@@ -24,7 +24,7 @@ def process_data():
     # 1. Get the data from form
     file = request.files.get('user_image')
     charset = request.form.get('charset')
-    char_limit = request.form.get('char_limit')
+    char_limit = request.form.get('char-limit')
 
     # data validation
     if file.filename == '':

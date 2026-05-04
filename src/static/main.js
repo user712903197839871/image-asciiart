@@ -1,3 +1,23 @@
+// if you ever wonder wth is choose, choosing mode, it is how we choose character limit size, either through a slider or buttons
+
+
+// could be read from a .env btw
+const CHOOSE_SLIDER_MODE_PROMPT = "you feel loose today? wanna slide?";
+const CHOOSE_SLIDER_MODE_BUTTON_TEXT = "yes i am loose";
+
+const CHOOSE_BUTTONS_MODE_PROMPT = "is too painfull? go back to a easier mode?";
+const CHOOSE_BUTTONS_MODE_BUTTON_TEXT = "yes please";
+
+const changeCharChooseModeButton = document.getElementById('toggle-char-choose-mode');
+const changeCharChooseModeLabel = document.getElementById('toggle-char-choose-mode-label');
+
+const CHOOSE_MODE_SLIDER_CONTAINER = document.getElementById('choose-mode-slider');
+const CHOOSE_MODE_BUTTONS_CONTAINER = document.getElementById('choose-mode-buttons');
+
+// buttons|slider
+let currentChoosingMode = "buttons";
+
+
 document.getElementById('img-ascii').addEventListener('submit', async (e) => {
     e.preventDefault(); // Stop the page from reloading
     
@@ -17,7 +37,7 @@ document.getElementById('img-ascii').addEventListener('submit', async (e) => {
 
     if (gotNoErrors) {
         // do some cheeky calculations
-        calcFontSetResult(parseInt(formData.get("char_limit")), result)
+        calcFontSetResult(parseInt(formData.get("char-limit")), result)
     } else {
         // default and nothing
         calcFontSetResult(16, "none")
@@ -26,11 +46,38 @@ document.getElementById('img-ascii').addEventListener('submit', async (e) => {
 
 });
 
-document.getElementById('char_limit_slider').addEventListener('input', (e) => {
-    const sliderOutput = document.getElementById('char_limit');
+document.getElementById('char-limit-slider').addEventListener('input', (e) => {
+    const sliderOutput = document.getElementById('char-limit');
 
     sliderOutput.value = e.target.value;
 });
+
+document.getElementById('char-limit-buttons').addEventListener('click', (e) => {
+    if (e.target.tagName === "BUTTON") {
+        document.getElementById('char-limit').value = e.target.textContent;
+    }
+});
+
+document.getElementById('toggle-char-choose-mode').addEventListener('click', (e) => {
+    toggleChoosingMode();
+});
+
+function init() {
+
+    changeCharChooseModeLabel.textContent = CHOOSE_SLIDER_MODE_PROMPT;
+    changeCharChooseModeButton.textContent = CHOOSE_SLIDER_MODE_BUTTON_TEXT;
+
+    
+    CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "block";
+    CHOOSE_MODE_SLIDER_CONTAINER.style.display = "none";
+
+}
+
+// ====================================================================
+// 
+//   helpers
+// 
+// ====================================================================
 
 // basically checks for the header and sends what kind of popup we need to show, or modify other shit, or shit hit the fan
 // returns wether it went ok or not
@@ -113,3 +160,26 @@ function calcFontSetResult(charLimit, result) {
     // attribuating the result
     output_box.innerText = resultText;
 }
+
+function toggleChoosingMode() {
+    if (currentChoosingMode === "buttons") {
+        currentChoosingMode = "slider";
+        CHOOSE_MODE_SLIDER_CONTAINER.style.display = "block";
+        CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "none";
+        
+        changeCharChooseModeLabel.textContent = CHOOSE_BUTTONS_MODE_PROMPT;
+        changeCharChooseModeButton.textContent = CHOOSE_BUTTONS_MODE_BUTTON_TEXT;
+    } else {
+        currentChoosingMode = "buttons";
+
+        CHOOSE_MODE_BUTTONS_CONTAINER.style.display = "block";
+        CHOOSE_MODE_SLIDER_CONTAINER.style.display = "none";
+
+        changeCharChooseModeLabel.textContent = CHOOSE_SLIDER_MODE_PROMPT;
+        changeCharChooseModeButton.textContent = CHOOSE_SLIDER_MODE_BUTTON_TEXT;
+    }
+}
+
+
+// initialize stuff that must be initialized
+init();

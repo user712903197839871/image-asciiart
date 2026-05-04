@@ -17,10 +17,10 @@ then comes the message
 - [x] enlarge the charset to its maximum limits
 - [x] actually last thing to add is make data validation and thats kinda it <br>
 thing is, we need to send headers back, i just want to format them as text, i just am lazy now, do it when you wont be
-- [ ] actually more data validation and shi required, but i dont wanna do it
-- [ ] add radioboxes to kinda select default chrlimits
-- [ ] add copy & save as image buttons
+- [x] add radioboxes to kinda select default chrlimits
 - [ ] then just add styles ask claude for design system
+- [ ] add copy & save as image buttons, delete as well as on big bois it laggs
+- [ ] actually more data validation and shi required, but i dont wanna do it
 - [ ] maybe make the backend site normal, not a dream of a dormant alcoholic
 - [ ] add resizing for biggest side
 - [ ] add a log system, if a sneaky hacker tries something, we dont see it
